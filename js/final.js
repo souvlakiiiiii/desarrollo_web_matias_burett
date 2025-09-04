@@ -20,6 +20,3 @@ document.getElementById('button2').addEventListener('click', function() {
 document.getElementById('closeButton').addEventListener('click', function() {
   hideCustomAlert();
 });
-
-// Example usage:
-// showCustomAlert('This is a custom alert with multiple buttons!');

@@ -1,7 +1,6 @@
 const seleccionarRegion = document.getElementById("region");
 const seleccionarComuna = document.getElementById("comuna");
 
-// Cargar las regiones
 region_comuna.regiones.forEach(region => {
     const opcion = document.createElement("option");
     opcion.value = region.numero;
@@ -9,7 +8,6 @@ region_comuna.regiones.forEach(region => {
     seleccionarRegion.appendChild(opcion);
 });
 
-// Cuando cambia la región, mostrar sus comunas
 seleccionarRegion.addEventListener("change", function() {
     seleccionarComuna.innerHTML = '<option value="">-- Selecciona una comuna --</option>';
     seleccionarComuna.disabled = true;

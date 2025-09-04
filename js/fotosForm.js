@@ -8,7 +8,7 @@ primeraFoto.addEventListener('change', () => {
     }
 });
 
-let contador = 2; // empieza desde 2 porque ya existe foto1
+let contador = 2;
 
 btnAgregar.addEventListener('click', () => {
     if (contador <= 5) {
@@ -24,6 +24,6 @@ btnAgregar.addEventListener('click', () => {
         nuevoTexto.id = "texto";
         nuevoTexto.textContent = "Has alcanzado el límite de fotos.";
         contenedor.appendChild(nuevoTexto);
-        btnAgregar.disabled = true; // opcional: deshabilitar el botón
+        btnAgregar.disabled = true;
     }
 });

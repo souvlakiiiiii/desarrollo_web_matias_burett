@@ -1,5 +1,5 @@
 const ahora = new Date();
-ahora.setHours(ahora.getHours() + 3); // suma 3 horas
+ahora.setHours(ahora.getHours() + 3);
 
 const año = ahora.getFullYear();
 const mes = String(ahora.getMonth() + 1).padStart(2, '0');
@@ -12,5 +12,5 @@ const fechaFormateada = `${año}-${mes}-${dia}T${horas}:${minutos}`;
 const inputFechaHora = document.getElementById("fecha");
 if (inputFechaHora) {
     inputFechaHora.value = fechaFormateada;
-    inputFechaHora.min = fechaFormateada; // opcional: que no se pueda elegir antes
+    inputFechaHora.min = fechaFormateada;
 }
