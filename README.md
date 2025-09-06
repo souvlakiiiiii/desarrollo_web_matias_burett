@@ -2,4 +2,4 @@ En la tabla de "Ver listado de adopciones", solo la primera fila se implementó 
 
 En la parte de "Agregar otra foto" en el formulario, se debe agregar una foto primero. Cuando se agregue, aparece el botón de agregar otra foto. Se puede apretar hasta 4 veces más (no es necesario agregar primero una foto para apretarlo de nuevo), dejando espacio para 5 fotos máximo como se pidió. 
 
-El CSS no viene en un archivo aparte. Se escribió todo lo relacionado a esto en el mismo HTML. Por eso es que solo hay carpetas de fotos, HTML y CSS.
+El CSS no viene en un archivo aparte. Se escribió todo lo relacionado a esto en el mismo HTML. Por eso es que solo hay carpetas de fotos, HTML y JS.
