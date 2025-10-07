@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/listado.css')}}">
+
+    <meta charset="UTF-8">
+
+    <title>Listado de avisos de adopción</title>
+
+</head>
+
+<body>
+    <div>
+        <h3>Listado de avisos de adopción</h3>
+        <div>
+            <table>
+                <tr>
+                    <th>Fecha publicación</th>
+                    <th>Fecha entrega</th>
+                    <th>Comuna</th>
+                    <th>Sector</th>
+                    <th>Cantidad/Tipo/Edad</th>
+                    <th>Nombre contacto</th>
+                    <th>Total de fotos</th>
+                </tr>
+                {% for dato in datos %}
+                    <tr style="cursor: pointer;" onclick="window.location.href='{{ url_for('mascota', aviso_id=dato.aviso.id) }}'">
+                        <td>{{dato.fecha_pub}}</td>
+                        <td>{{dato.fecha_ent}}</td>
+                        <td>{{dato.comuna.nombre}}</td>
+                        <td>{% if dato.sector == "" %}
+                                Sin sector asignado.
+                            {% else %}
+                                {{dato.sector}}
+                            {% endif %}</td>
+                        <td>{{ dato.cantidad ~ " " ~ dato.tipo ~ " (" ~ dato.edad ~ " " ~ dato.uedad ~ ")" }}</td>
+                        <td>{{dato.nombre}}</td>
+                        <td>{{dato.nro_fotos}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <p><a href="{{url_for('index')}}">Volver a la página principal</a></p>
+    </div>
+    <div class="paginacion">
+        {% if paginaActual > 1 %}
+            <a href="{{ url_for('listado', pagina=paginaActual-1) }}">← Anterior</a>
+        {% endif %}
+    
+        <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
+    
+        {% if paginaActual < totalPaginas %}
+            <a href="{{ url_for('listado', pagina=paginaActual+1) }}">Siguiente →</a>
+        {% endif %}
+    </div>
+
+</body>
+
+
+
+</html>

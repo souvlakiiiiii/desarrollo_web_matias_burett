@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/index.css')}}">
+
+    <meta charset="UTF-8">
+
+    <title>¡Bienvenido a AdoptaUnAmigo!</title>
+</head>
+
+<body>
+    <div>
+        <h3>¡Bienvenido a AdoptaUnAmigo!</h3>
+        <p id="mensaje">AdoptaUnAmigo es una organización que se dedica a rescatar perros y gatos principalmente, en
+            donde se les da un hogar temporal hasta que alguien los adopte. Cada uno de ellos está esperando a que lo
+            escojas como tu amigo. ¡Adopta!
+        </p>
+    </div>
+
+    <div class="navbar">
+        <a class="navbar-page" href="{{url_for('listado')}}">Ver listado de adopciones</a>
+        <a class="navbar-page" href="{{url_for('form')}}">Agregar aviso de adopción</a>
+        <a class="navbar-page" href="{{url_for('estadistica')}}">Estadísticas</a>
+    </div>
+
+
+
+
+    <div>
+        <h3>Últimas adopciones</h3>
+        <div>
+            <table>
+                <tr>
+                    <th>Fecha publicación</th>
+                    <th>Comuna</th>
+                    <th>Sector</th>
+                    <th>Cantidad/Tipo/Edad</th>
+                    <th>Foto</th>
+                </tr>
+                {% for x in datos %}
+                    <tr>
+                        <td>{{x.fecha_pub}}</td>
+                        <td>{{x.comuna.nombre}}</td>
+                        <td>{% if x.sector == "" %}
+                                Sin sector asignado.
+                            {% else %}
+                                {{x.sector}}
+                            {% endif %}</td>
+                        <td>{{ x.cantidad ~ " " ~ x.tipo ~ " (" ~ x.edad ~ " " ~ x.uedad ~ ")" }}</td>
+                        <td>{% if x.foto %}
+                                <img src="{{ url_for('static', filename='uploads/' + x.foto.ruta_archivo.replace('static/uploads\\', '').replace('\\', '/')) }}" width="200" height="200" alt="Foto adopción">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

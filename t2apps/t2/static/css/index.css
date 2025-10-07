@@ -1,0 +1,42 @@
+table {
+border-collapse: collapse;
+width: 100%;
+background-color: white;
+}
+
+table, th, td {
+border:1px solid black;
+padding:2px;
+}
+
+h2 {
+text-align: center;
+text-decoration: underline black;
+}
+                
+h3 {
+text-align: center;
+text-decoration: underline black;
+}
+
+p {
+text-align: center;
+}
+
+.navbar {
+text-align: center;
+margin: 10px 0;       
+}
+
+.navbar-page {
+margin: 0 10px;  
+text-decoration: none;
+}
+
+body {
+background-color: lightblue;
+}
+
+td {
+text-align: center;
+}
