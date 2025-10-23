@@ -25,10 +25,11 @@ async function crearGrafico1() {
 
     Highcharts.chart('g1', {
       chart: {
-        type: 'line'
+        type: 'line',
       },
       title: {
-        text: 'Cantidad de avisos de adopción'
+        text: '',
+        align: 'center'
       },
       xAxis: {
         type: 'datetime',
@@ -85,7 +86,8 @@ async function crearGrafico2() {
         type: 'pie'
       },
       title: {
-        text: 'Total de avisos por tipo de mascota'
+        text: '',
+        align: 'center'
       },
       series: [{
         name: 'Cantidad',
@@ -126,7 +128,8 @@ async function crearGrafico3() {
                 type: 'column'
             },
             title: {
-                text: 'Avisos de adopción por mes y por especie'
+                text: '',
+                align: 'center'
             },
             xAxis: {
                 categories: datosGrafico3.categories, 

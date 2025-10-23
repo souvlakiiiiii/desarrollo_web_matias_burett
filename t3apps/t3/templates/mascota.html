@@ -82,21 +82,24 @@
         <br><br>
         <div>
             <h3>Listado de comentarios</h3>
-            <span>{% if not comentarios%}
-                    <p>No hay comentarios aún.</p>
-                    {% else %}
-                        {% for comentario in comentarios %}
-                            {{comentario.nombre}}
-                            <br>
-                            {{comentario.texto}}
-                            <br>
-                            {{comentario.fecha}}
-                            <br><br>
-                        {% endfor %}
-                    {% endif %}</span>
+            <div id="lista-comentarios">
+                {% if not comentarios %}
+                <p>No hay comentarios aún.</p>
+                {% else %}
+                {% for comentario in comentarios %}
+                    <div class="comentario">
+                    <strong>{{ comentario.nombre }}</strong> ({{ comentario.fecha.strftime("%d/%m/%Y, %H:%M:%S") }})
+                    <p>{{ comentario.texto }}</p>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
         </div>
         <br><br>
-        <form method="POST" action="{{ url_for('agregar_comentarios', aviso_id=aviso.id) }}" enctype="multipart/form-data" id="comentario" data-aviso-id="{{aviso.id}}">
+        <form method="POST" action="{{ url_for('agregar_comentarios', aviso_id=aviso.id) }}" 
+              enctype="multipart/form-data" 
+              id="form-comentarios" data-aviso-id="{{aviso.id}}"
+              onsubmit="return false;"> 
         <div>
             <h3> Agregar comentario</h3>
             <label for="nombre-com">Nombre</label><br>
@@ -104,7 +107,7 @@
             <label for="agregar-com">Comentario a agregar</label><br>
             <textarea id="agregar-com" name="agregar-com" rows="4" cols="50"></textarea>
             <br>
-            <button type="submit">Enviar comentario</button>
+            <button type="submit" id="btn-enviar-comentario">Enviar comentario</button>
         </div>
         <div id="initial_opacity_zero"></div>
         <script src="{{url_for('static', filename='js/fotosListado.js')}}"></script>

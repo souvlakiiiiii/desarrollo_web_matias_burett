@@ -384,3 +384,18 @@ def get_all_comentarios_by_aviso_id(id):
     comentariosDevolver=session.query(Comentarios).filter_by(aviso_id=id).all()
     session.close()
     return comentariosDevolver
+
+def create_comentario_return(nombre, texto, fecha, aviso_id):
+    session = SessionLocal()
+    new_comentario=Comentarios(nombre=nombre, texto=texto, fecha=fecha, aviso_id=aviso_id)
+    session.add(new_comentario)
+    session.commit()
+    datos = {
+        "id": new_comentario.id,
+        "nombre": new_comentario.nombre,
+        "texto": new_comentario.texto,
+        "fecha": new_comentario.fecha,
+        "aviso_id": new_comentario.aviso_id
+    }
+    session.close()
+    return datos

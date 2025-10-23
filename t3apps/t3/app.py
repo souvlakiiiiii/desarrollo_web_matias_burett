@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, flash, ses
 from database.db import SessionLocal
 from database.db import get_5_avisos, get_foto_by_aviso, create_foto, create_aviso_get_id, create_contactar_por, get_all_fotos_by_aviso_numero, get_aviso_by_id, get_foto_by_aviso, get_contacto_by_aviso, get_avisos_paginados, contar_avisos, get_all_fotos_by_aviso_numero, get_all_fotos_by_aviso
 from database.db import get_fechaent_by_id, get_fechapub_by_id, get_sector_by_id, get_region_by_id, get_nombre_by_id, get_aviso_id, get_contacto_by_id, get_comuna_by_id, get_cantidad_by_id, get_tipo_by_id, get_edad_by_id, get_uedad_by_id, get_all_regiones, get_all_comunas, get_comuna_by_region
-from database.db import get_all_aviso, get_datos_grafico1, get_datos_grafico2, get_datos_grafico3, create_comentario, get_all_comentarios_by_aviso_id
+from database.db import get_all_aviso, get_datos_grafico1, get_datos_grafico2, get_datos_grafico3, create_comentario, get_all_comentarios_by_aviso_id, create_comentario_return
 from werkzeug.utils import secure_filename
 import hashlib
 import filetype
@@ -180,22 +180,25 @@ def agregar_comentarios(aviso_id):
     if request.method == "POST":
         c_nombre = request.form.get("nombre-com")
         c_texto = request.form.get("agregar-com")
-        c_fecha=datetime.now()
+        c_fecha = datetime.now()
         validado = validar_comentario(c_nombre, c_texto)
-        aviso=get_aviso_by_id(aviso_id)
-        fotos=get_all_fotos_by_aviso(aviso_id)
-        contacto=get_contacto_by_aviso(aviso_id)
 
         if validado == False:
-            flash('El comentario fue mal ingresado. Intenta de nuevo por favor.')
-            return redirect(url_for("mascota", aviso_id=aviso_id))
+            return jsonify({
+                "error": "Error de validación. Revisa que el nombre tenga al menos 3 letras y que el comentario sea mayor a 5 y menor a 500 caracteres."
+            }), 400
         else:
-            create_comentario(c_nombre, c_texto, c_fecha, aviso_id)
-            comentarios = get_all_comentarios_by_aviso_id(aviso_id)
-            return redirect(url_for("mascota", aviso_id=aviso_id))
+            com = create_comentario_return(c_nombre, c_texto, c_fecha, aviso_id)
+            
+            fecha_obj = com['fecha']
+            fecha_str = fecha_obj.isoformat() if isinstance(fecha_obj, datetime) else str(fecha_obj)
+            
+            return jsonify({
+                "nombre": com["nombre"],
+                "texto": com["texto"],
+                "fecha": fecha_str
+            })
 
-
-#@cross_origin(origin='127.0.0.1', supports_credentials=True)
 @app.route("/estadisticas", methods=['GET'])
 def estadistica():
     return render_template("estadisticas.html")
