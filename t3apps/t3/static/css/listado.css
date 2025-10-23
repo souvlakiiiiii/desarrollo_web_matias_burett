@@ -1,0 +1,55 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border:1px solid black;
+    background-color: white;
+    padding:2px;
+}
+
+body {
+    background-color: lightblue;
+}
+
+td {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    text-decoration: underline black;
+}
+
+.paginacion {
+    margin: 20px 0;
+    text-align: center;
+    padding: 15px;
+}
+
+.paginacion a {
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    color: #4CAF50;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.paginacion a:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.paginacion span {
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #333;
+}
