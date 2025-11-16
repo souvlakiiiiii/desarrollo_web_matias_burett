@@ -1,0 +1,9 @@
+Para esta tarea se pedía solamente implementar una interfaz de una adaptación de parte del listado a java y spring boot, manteniendo el funcionamiento asíncrono de los archivos js y el comportamiento dinámico de la página y la base de datos. Todo fue implementado de la manera en que se pedía (pues solo se pedía la funcionalidad de la nota en esta tarea). Las notas se agregan de manera correcta a la tabla nueva correspondiente, y el promedio de las notas se calcula aproximando con 1 decimal. 
+
+Se añadió todo lo que tiene que ver con servicios y controladores, además de adaptar el html a thymeleaf. CSS y código html son adaptados/reusados de tareas anteriores, por lo tanto, puede que hayan algunas líneas basura (que no afectan al funcionamiento de la página, el validador de css y de html no arrojan errores).
+
+No fue necesario hacer un validador de nota debido a la forma en la que se implementó el sistema mismo. Al no tener que depender del input directo del usuario, sino que de un menú desplegable donde el usuario elige una nota del 1 al 7 (y un valor vacío, pero se arroja error en caso de elegirse), se controlan los casos problemáticos como meter notas decimales, strings, etc. Esto no causa ningún problema con respecto al diseño pedido en la tarea, pues se dio libertad para que esta funcionalidad de agregara de la manera que estimáramos conveniente.
+
+Notar que en caso de que no haya nota, si funciona lo de que salga un "-".
+
+Fuera de eso, no hay mucho más que decir al respecto, salvo volver a mencionar que esto es una adaptación de una parte muy pequeña de la tarea a java con spring boot.
