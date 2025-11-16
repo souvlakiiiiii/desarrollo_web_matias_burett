@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/listado.css}">
+
+    <meta charset="UTF-8">
+
+    <title>Listado de avisos de adopción</title>
+
+</head>
+
+<body>
+    <div>
+        <h3>Listado de avisos de adopción</h3>
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha publicación</th>
+                    <th>Sector</th>
+                    <th>Cantidad/Tipo/Edad</th>
+                    <th>Comuna</th>
+                    <th>Nota</th>
+                    <th></th>
+                </tr>
+                <tr th:each="dato : ${avisos}">
+                    <td th:text="${dato.id}"></td>
+                    <td th:text="${dato.fecha}"></td>
+                    <td th:text="${#strings.defaultString(dato.sector, 'Sin sector asignado.')}"></td>
+                    <td th:text="|${dato.cantidad} ${dato.tipo} ${dato.edad} ${dato.umedida}|"></td>
+                    <td th:text="${dato.comuna.nombre}"></td>
+                    <td th:id="'promedio-' + ${dato.id}"
+                        th:text="${dato.nota}"></td>
+                    <td><button th:id="'btn-evaluar-' + ${dato.id}" class="btn-evaluar" type="button" th:attr="data-id=${dato.id}">
+                            Evaluar
+                        </button>
+                        <br><br>
+                        <select th:id="'notas-' + ${dato.id}" class="notas" name="notas" hidden>
+                            <option value="vacio" selected label=" "></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select><br><br>
+                        <button th:id="'btn-enviar-' + ${dato.id}" class="btn-enviar" type="button" th:attr="data-id=${dato.id}" hidden>
+                            Enviar
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+    </div>
+    <script th:src="@{/js/nota.js}"></script>
+</body>
+</html>

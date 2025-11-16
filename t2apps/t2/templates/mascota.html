@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/mascotas.css')}}">
+
+    <meta charset="UTF-8">
+
+    <title>Mascotas primera fila</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h3>Fecha publicación</h3>
+            <span>{{aviso.fecha_ingreso}}</span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Fecha entrega</h3>
+            <span>{{aviso.fecha_entrega}}</span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Comuna</h3>
+            <span>{{aviso.comuna.nombre}} </span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Sector</h3>
+            <span>{% if aviso.sector == "" %}
+                        Sin sector asignado.
+                    {% else %}
+                        {{x.sector}}
+                    {% endif %}</span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Cantidad/Tipo/Edad</h3>
+            <span>{{ aviso.cantidad }} {{ aviso.tipo }} ({{ aviso.edad }} {{ aviso.unidad_medida }})</span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Nombre contacto</h3>
+            <span>{{aviso.nombre}}</span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Email contacto</h3>
+            <span>{{aviso.email}}</span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Número de celular del contacto</h3>
+            <span>{% if aviso.celular == "" %}
+                        Sin número celular entregado.
+                    {% else %}
+                        {{aviso.celular}}
+                    {% endif %}</span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Descripción de la mascota</h3>
+            <span>{% if aviso.descripcion == "" %}
+                        Sin descripción entregada.
+                    {% else %}
+                        {{aviso.descripcion}}
+                    {% endif %}</span>
+        </div>
+        <br><br>
+        <div>
+            <h3>Fotos</h3>
+            <span>{% for foto in fotos %}
+                    <img src="{{ url_for('static', filename='uploads/' + foto.nombre_archivo.replace('\\', '/')) }}" 
+                            height="240" width="320" 
+                            onclick='agrandarFotos(this)'
+                            id="foto{{ foto.id }}"
+                            alt="Foto de {{ aviso.tipo }}">
+                {% endfor %}</span>
+        </div>
+        <br><br>
+        <div id="initial_opacity_zero"></div>
+        <script src="{{url_for('static', filename='js/fotosListado.js')}}"></script>
+        <p><a href="{{url_for('index')}}">Volver a la página principal</a></p>
+    </div>
+</body>
+</html>
